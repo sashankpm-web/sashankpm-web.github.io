@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy &amp; Email Marketing Preferences — Sashank Vemuri</title>
+<meta name="description" content="Giving customers control of how the bank markets to them — privacy opt-outs and email preferences — wherever they bank, with every system marketing relies on receiving the same answer. For a…">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sashank Vemuri — Product">
+<meta property="og:title" content="Privacy &amp; Email Marketing Preferences — Sashank Vemuri">
+<meta property="og:description" content="Giving customers control of how the bank markets to them — privacy opt-outs and email preferences — wherever they bank, with every system marketing relies on receiving the same answer. For a…">
+<meta property="og:url" content="https://sashankpm-web.github.io/case-studies/privacy-platform.html">
+<meta property="og:image" content="https://sashankpm-web.github.io/assets/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://sashankpm-web.github.io/case-studies/privacy-platform.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand"><a href="../index.html" style="color:inherit; text-decoration:none;">Sashank Vemuri <span>·</span> Product</a></div>
+    <nav class="main-nav">
+      <a href="../index.html#case-studies">Case Studies</a>
+      <a href="../index.html#careerlogic">CareerLogic</a>
+      <a href="../index.html#teardown">Teardown</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact" class="cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="cs-header">
+      <p class="eyebrow">Case Study 1 of 4</p>
+      <h1>Privacy &amp; Email Marketing Preferences</h1>
+      <p class="lede">Giving customers control of how the bank markets to them — privacy opt-outs and email preferences — wherever they bank, with every system marketing relies on receiving the same answer. For a top-10 U.S. retail bank.</p>
+      <div class="cs-meta">
+        <div><b>Role</b>Senior Product Owner / Product Manager</div>
+        <div><b>Products</b>Privacy Preferences · Email Marketing Preferences</div>
+        <div><b>Timeframe</b>2024 – Present</div>
+        <div><b>Scale</b>19M+ users · ~30M email contacts</div>
+        <div><b>Team</b>~12–15-person scrum team</div>
+      </div>
+      <div class="tool-row">
+        <span class="tool-badge"><span class="icon-chip"><img src="../assets/logos/splunk.svg" alt="Splunk"></span>Splunk</span>
+        <span class="tool-badge"><span class="icon-chip"><img src="../assets/logos/swagger.svg" alt="Swagger"></span>Swagger</span>
+        <span class="tool-badge"><span class="icon-chip"><img src="../assets/logos/jira.svg" alt="Jira"></span>Jira</span>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <p class="eyebrow">TL;DR</p>
+      <ul>
+        <li>I own two product areas: <b>Privacy Preferences</b> — the regulated marketing opt-outs under FCRA, GLBA (do not mail) and TCPA (do not call) — and <b>Email Marketing Preferences</b>, the CAN-SPAM opt-ins and opt-outs for each brand, from co-brand card partners to the bank's wealth and investment brands.</li>
+        <li>Privacy choices could only be set through one old, ambiguous form on the public website. We replaced it with <b>one micro-frontend, built once and rendered in four channels</b> — public website, online banking, mobile web and the native app — delivering every choice to the systems marketing relies on. It launched in phases: the public site in <b>September 2025</b>, online banking and the native app in <b>November 2025</b>.</li>
+        <li>Our most recent release is a <b>standalone Do-Not-Call page that needs only a phone number</b>, so stopping marketing calls no longer means handing over a mailing address.</li>
+        <li>Result: <b>60%</b> fewer manual overrides, <b>~$750K</b> a year in operational savings, <b>NPS +8</b>. Live since September 2025 with 100% API uptime, and Email Marketing Preferences now covers more brands — including compliant unsubscribe for <b>~450K</b> investment customers.</li>
+      </ul>
+    </div>
+
+    <section class="cs-section">
+      <h2><span class="step">1</span>Problem &amp; who it's for</h2>
+      <p><b>Privacy Preferences.</b> Before this work there was exactly one place to set them — an older standalone form,
+      reached from the bank's Privacy page and worded in ways customers found ambiguous. Behind the login, in online banking or the native app,
+      there was nothing. The form also asked every customer for a name, phone number and mailing address, whatever they
+      wanted to change.</p>
+      <p><b>Email Marketing Preferences.</b> This was already its own product, under Profile &amp; Settings, reaching
+      roughly 30 million email contacts — customers, prospects and employees. Each brand, from co-brand card partners to
+      the bank's wealth-management and investment brands, has its own opt-in and opt-out choices, and brands are onboarded
+      and retired continuously, so the journeys keep changing. It stayed a separate product; the work here was expanding
+      and modernising it, not merging it.</p>
+      <p>Four groups carry the cost when this goes wrong:</p>
+      <ul>
+        <li><b>Customers</b> who can't manage their choices where they actually bank, or can't tell what each choice means.</li>
+        <li><b>Customer service and branch staff,</b> who handle the requests that arrive by phone and in person instead, applying them as manual overrides.</li>
+        <li><b>Marketing,</b> which needs reliable preference data in its own systems to know which customers and prospects it may contact.</li>
+        <li><b>Compliance and audit,</b> who need to show what a customer chose, and when.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">2</span>Evidence &amp; inputs</h2>
+      <ul>
+        <li><b>The regulations themselves.</b> Working with risk, privacy, compliance and legal, I translated GLBA, TCPA, FCRA, CALFIPA and CAN-SPAM requirements into concrete product requirements: what has to be captured, how long it has to be kept, and what proof of a customer's choice has to look like for an auditor.</li>
+        <li><b>What each request actually needs.</b> The FCC's do-not-call rule asks a business to record the subscriber's name, if given, and telephone number, and to honour the request within ten business days. Our form demanded a mailing address before it would accept one.</li>
+        <li><b>The old form.</b> Which wording customers misread, and which choices they couldn't tell apart — the starting point for a clearer, unambiguous design.</li>
+        <li><b>Where the data has to land.</b> Each choice has to reach the core banking system, the customer-profile platform, the preference data store and the enterprise data platform, and marketing reads it from there. I mapped what each system needs and when.</li>
+        <li><b>API contracts.</b> I read the Swagger contracts with the API and QA teams so the API requirements I wrote were complete and matched what was actually exposed.</li>
+        <li><b>Operational signals and analytics:</b> manual-override volume, calls and branch visits about preferences, and — after launch — Tableau dashboards and product analytics, which informed the usability changes behind a 25% improvement in feature adoption.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">3</span>Workflow, controls &amp; guardrails</h2>
+      <p>A customer sets a preference on the public website, in online banking, on mobile web or in the native app — all
+      the same micro-frontend. The platform <b>captures</b> the choice with an audit record and <b>delivers</b> it to the core banking
+      system, the customer-profile platform, the preference data store and the enterprise data platform. Marketing then reads the result to decide whether a customer or prospect can be contacted;
+      that decision stays with marketing, and the platform's job is to make sure it is made on the right data.</p>
+      <ul>
+        <li><b>The failure mode designed against:</b> a choice that reaches one system and not another, so marketing acts on stale data.</li>
+        <li><b>Ask only for what a request needs.</b> A do-not-call request takes a phone number, not an address.</li>
+        <li><b>Never overwrite on an ambiguous match.</b> On the public site, the bank identifies the person from what they
+        type. When that matches more than one customer, extra checks narrow it down; if it still isn't one clear match, the
+        request is saved as a prospect's and no existing customer record is touched.</li>
+        <li><b>Audit traceability</b> was a requirement from day one, defined with risk, privacy and legal, not bolted on after the build.</li>
+        <li><b>Monitoring:</b> Splunk dashboards on API performance, built by engineering and tracked by me alongside the product metrics, plus Kibana monitoring of the public-site (prospect) flows across test, UAT and production.</li>
+        <li><b>What "good" meant:</b> product OKRs tied to adoption, compliance SLA adherence and operational error reduction, reviewed through sprint velocity dashboards and quarterly business reviews.</li>
+      </ul>
+<figure class="diagram">
+<svg class="dg" viewBox="0 0 760 250" role="img" aria-label="Before: one old public form, no option in online banking or the mobile app, so customers called or visited a branch. After: one micro-frontend rendered in the public website, online banking, mobile web and the native app captures each choice with an audit trail and delivers it to core banking, the customer-profile platform, the preference store and the data platform.">
+<defs><marker id="pva" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead" d="M0,0 L10,5 L0,10 z"/></marker><marker id="pvh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead hl" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<text class="lbl" x="10" y="18">BEFORE</text>
+<text class="lbl" x="372" y="18">AFTER</text>
+<rect class="box warn" x="10" y="34" width="140" height="46" rx="8"/>
+<text x="80" y="48.0" text-anchor="middle" dominant-baseline="middle">Public website</text>
+<text class="muted" x="80" y="66.0" text-anchor="middle" dominant-baseline="middle">one old form</text>
+<rect class="box dim" x="10" y="96" width="140" height="46" rx="8"/>
+<text x="80" y="110.0" text-anchor="middle" dominant-baseline="middle">Online banking</text>
+<text class="muted" x="80" y="128.0" text-anchor="middle" dominant-baseline="middle">no option</text>
+<rect class="box dim" x="10" y="158" width="140" height="46" rx="8"/>
+<text x="80" y="172.0" text-anchor="middle" dominant-baseline="middle">Mobile app</text>
+<text class="muted" x="80" y="190.0" text-anchor="middle" dominant-baseline="middle">no option</text>
+<rect class="box warn" x="186" y="120" width="130" height="60" rx="8"/>
+<text x="251" y="141.0" text-anchor="middle" dominant-baseline="middle">Call or visit</text>
+<text x="251" y="159.0" text-anchor="middle" dominant-baseline="middle">a branch</text>
+<path class="edge bad" d="M150,119 L184,142" marker-end="url(#pva)"/>
+<path class="edge bad" d="M150,181 L184,162" marker-end="url(#pva)"/>
+<text class="muted" x="251" y="204" text-anchor="middle">staff apply manual overrides</text>
+<rect class="box " x="372" y="28" width="118" height="36" rx="8"/>
+<text x="431" y="46.0" text-anchor="middle" dominant-baseline="middle">Public website</text>
+<path class="edge hl" d="M490,46 L526,115" marker-end="url(#pvh)"/>
+<rect class="box " x="372" y="74" width="118" height="36" rx="8"/>
+<text x="431" y="92.0" text-anchor="middle" dominant-baseline="middle">Online banking</text>
+<path class="edge hl" d="M490,92 L526,115" marker-end="url(#pvh)"/>
+<rect class="box " x="372" y="120" width="118" height="36" rx="8"/>
+<text x="431" y="138.0" text-anchor="middle" dominant-baseline="middle">Mobile web</text>
+<path class="edge hl" d="M490,138 L526,115" marker-end="url(#pvh)"/>
+<rect class="box " x="372" y="166" width="118" height="36" rx="8"/>
+<text x="431" y="184.0" text-anchor="middle" dominant-baseline="middle">Native app</text>
+<path class="edge hl" d="M490,184 L526,115" marker-end="url(#pvh)"/>
+<rect class="box hl" x="528" y="56" width="118" height="118" rx="8"/>
+<text x="587" y="97.0" text-anchor="middle" dominant-baseline="middle">One micro-</text>
+<text x="587" y="115.0" text-anchor="middle" dominant-baseline="middle">frontend</text>
+<text x="587" y="133.0" text-anchor="middle" dominant-baseline="middle">capture + audit</text>
+<rect class="box ok" x="676" y="26" width="80" height="36" rx="8"/>
+<text x="716" y="37.0" text-anchor="middle" dominant-baseline="middle" style="font-size:11.5px">Core</text>
+<text x="716" y="51.0" text-anchor="middle" dominant-baseline="middle" style="font-size:11.5px">banking</text>
+<path class="edge hl" d="M646,115 L674,44" marker-end="url(#pvh)"/>
+<rect class="box ok" x="676" y="74" width="80" height="36" rx="8"/>
+<text x="716" y="85.0" text-anchor="middle" dominant-baseline="middle" style="font-size:11.5px">Customer</text>
+<text x="716" y="99.0" text-anchor="middle" dominant-baseline="middle" style="font-size:11.5px">profile</text>
+<path class="edge hl" d="M646,115 L674,92" marker-end="url(#pvh)"/>
+<rect class="box ok" x="676" y="122" width="80" height="36" rx="8"/>
+<text x="716" y="133.0" text-anchor="middle" dominant-baseline="middle" style="font-size:11.5px">Preference</text>
+<text x="716" y="147.0" text-anchor="middle" dominant-baseline="middle" style="font-size:11.5px">store</text>
+<path class="edge hl" d="M646,115 L674,140" marker-end="url(#pvh)"/>
+<rect class="box ok" x="676" y="170" width="80" height="36" rx="8"/>
+<text x="716" y="181.0" text-anchor="middle" dominant-baseline="middle" style="font-size:11.5px">Data</text>
+<text x="716" y="195.0" text-anchor="middle" dominant-baseline="middle" style="font-size:11.5px">platform</text>
+<path class="edge hl" d="M646,115 L674,188" marker-end="url(#pvh)"/>
+<text class="muted" x="564" y="236" text-anchor="middle">built once, rendered in four channels · marketing reads the result</text>
+</svg>
+<figcaption>Before: one old public form, and nowhere to manage choices once signed in, so changes came through calls and branches as manual overrides. After: one micro-frontend, built once and rendered in four channels, delivering the same choice to every downstream system with an audit trail.</figcaption>
+</figure>
+      <p class="fine">A diagram of the approach, not a product screen. The real artefacts are the client's and stay confidential.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">4</span>Options considered</h2>
+      <h3>Decision 1 — how to reach every channel</h3>
+      <div class="options">
+        <div class="option">
+          <span class="verdict">Set aside</span>
+          <b>Refresh only the public form</b>
+          <p>The quickest win. But signed-in customers would still have had nowhere to manage their choices, and the calls, branch visits and manual overrides would have continued.</p>
+        </div>
+        <div class="option">
+          <span class="verdict">Set aside</span>
+          <b>A separate app or microsite per channel</b>
+          <p>Faster to start, but four builds — and four rounds of testing and release for every regulatory change.</p>
+        </div>
+        <div class="option chosen">
+          <span class="verdict">Chosen</span>
+          <b>One micro-frontend, rendered in four channels</b>
+          <p>Built once on the bank's micro-frontend architecture and rendered in the public website, online banking, mobile web and the native app. One change to build, test and release for each new requirement.</p>
+        </div>
+      </div>
+      <h3>Decision 2 — how to honour "do not call"</h3>
+      <div class="options">
+        <div class="option">
+          <span class="verdict">Set aside</span>
+          <b>Keep it inside the full privacy form</b>
+          <p>The usual pattern — but anyone who only wanted marketing calls to stop would keep handing over a mailing address the request doesn't need.</p>
+        </div>
+        <div class="option">
+          <span class="verdict">Set aside</span>
+          <b>Wait for back-end decoupling</b>
+          <p>Call and mail preferences are still coupled underneath. Waiting for phase two to separate them would have left the bank carrying the risk in the meantime.</p>
+        </div>
+        <div class="option chosen">
+          <span class="verdict">Chosen</span>
+          <b>A standalone Do-Not-Call page, now</b>
+          <p>Agreed in working sessions with compliance, legal and business stakeholders: a page on the public website where a customer enters a phone number and is added to the do-not-call list. Signed-in channels don't need it — the bank already knows who the customer is there.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">5</span>Decision, trade-offs &amp; non-goals</h2>
+      <p><b>Decision criteria.</b> Backlog items were prioritised on regulatory obligation, business value and technical
+      dependency, in that combination, rather than on any one alone.</p>
+      <p><b>Trade-offs accepted.</b></p>
+      <ul>
+        <li>Shipping the Do-Not-Call page on today's architecture means call and mail stay coupled in the back end until phase two. We accepted a temporary seam to remove the compliance risk now.</li>
+        <li>A slower-feeling cadence each sprint, because tech debt — API versioning, legacy preference migration — shared capacity with features, in exchange for avoiding a debt cliff later.</li>
+        <li>A longer rollout, sequenced by <b>channel readiness</b> rather than build order: customer service, branch operations and compliance communications each needed different lead time for training, call-centre scripts and sign-off on customer-facing copy.</li>
+      </ul>
+      <p><b>Non-goals.</b></p>
+      <ul class="nongoals">
+        <li>Deciding who marketing may contact. The platform delivers the customer's choice; marketing applies it.</li>
+        <li>Merging Privacy and Email Marketing Preferences into one product. They stay separate product areas with their own journeys.</li>
+        <li>A do-not-call page in signed-in channels, where the bank already holds the customer's details.</li>
+      </ul>
+      <p><b>What's next.</b> Phase two decouples call and mail preferences in the back end and moves preference data off the
+      legacy system of record onto a modern distributed database. Further out — and still only at the idea stage — we're
+      exploring whether AI agents could take a new preference and draft its full delivery package from the Preference
+      Delivery Framework: the stories, acceptance criteria and checklists, ready for the team to review.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">6</span>What I delivered</h2>
+      <ul>
+        <li>A <b>revamped public-website form</b>, clearer and unambiguous</li>
+        <li><b>One micro-frontend</b> bringing privacy preferences to online banking, mobile web and the native app, where none existed before</li>
+        <li>A <b>standalone Do-Not-Call page</b> that needs only a phone number</li>
+        <li>Phased launches: the <b>public site in September 2025</b>, then <b>online banking and the native app in November 2025</b>, followed by a landing page that routes people to sign in or to verify who they are</li>
+        <li>An <b>FCRA experience-and-transaction sharing preference</b> customers can now manage digitally, and email notifications confirming preference changes</li>
+        <li>Ongoing <b>Email Marketing Preferences</b> releases: wealth-management, investment and co-brand partner brands onboarded and retired, with refreshed brand themes and simpler opt-in and opt-out journeys</li>
+        <li>A <b>Preference Delivery Framework</b>, which I built from scratch after my product manager proposed the idea: a reusable package of story templates — discovery and compliance, UX, API, events and monitoring, QA and release — so each new preference (California consent, FCRA affiliate sharing and the rest of the roadmap) follows the same checklist instead of starting from scratch</li>
+        <li><b>300+ user stories</b> with detailed acceptance criteria, and the integration requirements for every downstream system — core banking, customer profile, preference store and data platform</li>
+        <li>Product <b>OKRs</b>, <b>channel-specific GTM plans</b> and training milestones, and a prioritised <b>tech-debt backlog</b></li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">7</span>Outcome &amp; metrics</h2>
+      <ul>
+        <li><b>19M+ users</b> impacted</li>
+        <li><b>60%</b> reduction in manual overrides through workflow optimization</li>
+        <li><b>~$750K</b> operational savings annually</li>
+        <li><b>NPS +8 points</b> improvement</li>
+        <li><b>25%</b> feature adoption improvement via usability enhancements informed by Tableau/product analytics</li>
+        <li><b>30%</b> faster release cycles through better backlog refinement · <b>20%</b> defect reduction through UAT/SIT coordination</li>
+        <li><b>94%</b> Epics Predictability · <b>100%</b> User Story Predictability · <b>92%</b> test coverage · <b>56%</b> post-launch feature completion rate</li>
+        <li><b>100%</b> API uptime and ~18 avg daily sessions since the September 2025 go-live</li>
+        <li><b>~450K</b> investment customers covered by compliant (CAN-SPAM) unsubscribe once the investment brand was onboarded</li>
+        <li><b>4</b> channels from one build, delivered by a <b>~12–15-person</b> scrum team</li>
+      </ul>
+      <p><b>Do-Not-Call page</b> <i>(launched 2026 — too early for results)</i>. Measurement plan: requests completed; time
+      to honour each request against the ten-business-day limit; and do-not-call requests that still arrive by phone or in
+      branches, which should fall.</p>
+      <p><b>Regulatory, legal and reputational risk.</b> For a bank of this size, the cost of getting consent wrong is
+      rarely the fix — it is the exposure. Under the TCPA, a customer who receives repeated marketing calls after asking
+      not to be called can sue for up to <b>$500 per call</b>, and up to <b>three times that</b> if the violation is found
+      to be wilful; across millions of customers, that becomes class-action scale. Honouring every choice the same way in
+      every system, with an audit trail, and accepting do-not-call requests without demanding extra personal data, lowers
+      that exposure — along with the regulatory scrutiny and headline risk that follow a consent failure at a top-10 bank.</p>
+      <p class="fine">Figures as recorded at the time. Client-identifying detail is withheld under NDA. TCPA damages per 47 U.S.C. § 227(c)(5).</p>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">8</span>Retrospective</h2>
+      <p>The highest-leverage change wasn't a better form — it was putting the choice where customers already bank. Once
+      signed-in customers could set their own preferences, requests stopped needing a call or a branch visit to become a
+      manual override.</p>
+      <p>The Do-Not-Call release taught me to ask, for every request, <b>what does this actually need?</b> A shared form
+      quietly asks everyone for everything. Splitting out the one request that needed far less was a small build with an
+      outsized compliance payoff.</p>
+      <p><b>What I'd do differently:</b> map every affected team before refinement starts. While we were delivering an
+      FCRA preference change, the team responsible for TCPA wasn't in the room early enough. When they joined, they
+      pointed out that a do-not-call request shouldn't need a mailing address — which is what led to the standalone
+      Do-Not-Call page. The release still shipped, but the dependency surfaced late. Since then, a list of affected teams and
+      stakeholders is part of discovery in our Preference Delivery Framework, not something we find during
+      implementation.</p>
+    </section>
+
+    <div class="cs-nav">
+      <span></span>
+      <a href="bee-entitlement.html">Next: Banker Experience Evolution &rarr;</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>&copy; Sashank Vemuri — Hyderabad, India</div>
+    <div>
+      <a href="mailto:sashank.vemuri@gmail.com">sashank.vemuri@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/sashank-vemuri" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

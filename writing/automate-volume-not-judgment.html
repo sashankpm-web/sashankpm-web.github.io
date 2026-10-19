@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automate volume, not judgment — Sashank Vemuri</title>
+<meta name="description" content="Trade finance early in my career, my own job search more recently: different technology, the same product decision.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sashank Vemuri — Product">
+<meta property="og:title" content="Automate volume, not judgment — Sashank Vemuri">
+<meta property="og:description" content="Trade finance early in my career, my own job search more recently: different technology, the same product decision.">
+<meta property="og:url" content="https://sashankpm-web.github.io/writing/automate-volume-not-judgment.html">
+<meta property="og:image" content="https://sashankpm-web.github.io/assets/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://sashankpm-web.github.io/writing/automate-volume-not-judgment.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand"><a href="../index.html" style="color:inherit; text-decoration:none;">Sashank Vemuri <span>·</span> Product</a></div>
+    <nav class="main-nav">
+      <a href="../index.html#case-studies">Case Studies</a>
+      <a href="../index.html#careerlogic">CareerLogic</a>
+      <a href="../index.html#teardown">Teardown</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact" class="cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="cs-header">
+      <p class="eyebrow">Writing · Automation</p>
+      <h1>Automate volume, not judgment</h1>
+      <p class="lede">Trade finance early in my career, my own job search more recently: different technology, the same product decision.</p>
+    </div>
+
+    <section class="cs-section">
+      <p>I have worked on automation in two very different contexts: trade finance early in my career and product delivery more recently. The technology was different, but the product decision was the same: automate the repetitive work and keep human judgment for the exceptions.</p>
+
+      <p>In 2018, I worked as a Business Analyst on AutoRec, an automation platform for a bank's trade-finance operation. One of the processes involved reviewing documents submitted against a Letter of Credit: invoices, bills of lading, certificates of origin, and other supporting documents.</p>
+
+      <p>The manual process was slow because every document had to be checked against the exact terms of the Letter of Credit. OCR could extract the information quickly, but extraction wasn't the same as validation.</p>
+
+      <p>We therefore didn't design the system to automatically approve everything it could read. The extracted information had to be validated against the actual terms in the SWIFT message. Standard documents could go through automated checks, while unusual or ambiguous cases were routed to a human reviewer.</p>
+
+      <p>That distinction mattered. We still reduced turnaround time from days to minutes for the routine cases, while keeping specialist review where the risk was higher.</p>
+
+      <p>I've seen the same principle in more recent product work.</p>
+
+      <p>When I built <a href="../projects/careerlogic.html">an automation workflow for my own job search</a>, the problem wasn't finding jobs. It was the volume of jobs that looked relevant but failed basic requirements such as location, work authorisation, sponsorship, or role fit.</p>
+
+      <p>I created rules to eliminate the obvious mismatches automatically. That removed a large amount of manual screening, but I didn't make the system responsible for the final decision. Some roles still passed the rules and looked relevant until the full job description was reviewed: on one day, reading the full descriptions ruled out 8 of the 47 roles the rules had ranked highest.</p>
+
+      <p>That led me back to the same approach I used in trade finance: automate the high-volume, predictable decisions and create a clear path for exceptions.</p>
+
+      <p>Today, when someone asks whether a process can be automated, I usually start with three questions:</p>
+      <ul>
+        <li><b>What does a correct result look like?</b></li>
+        <li><b>Which parts of the process are genuinely repetitive?</b></li>
+        <li><b>What happens when the system isn't confident?</b></li>
+      </ul>
+
+      <p>The third question is often missed.</p>
+
+      <p>A good automation solution isn't necessarily the one that automates the highest percentage of cases. It is the one that removes the most unnecessary manual effort while making sure the difficult cases still reach someone who can make the right decision.</p>
+    </section>
+
+    <div class="cs-nav">
+      <a href="../index.html#writing">&larr; All writing</a>
+      <a href="compliance-is-a-requirement.html">Next: Compliance is a product requirement, not a gate &rarr;</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>&copy; Sashank Vemuri — Hyderabad, India</div>
+    <div>
+      <a href="mailto:sashank.vemuri@gmail.com">sashank.vemuri@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/sashank-vemuri" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

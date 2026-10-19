@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building a privacy platform instead of another privacy feature — Sashank Vemuri</title>
+<meta name="description" content="A new requirement doesn&#x27;t always need a new solution.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sashank Vemuri — Product">
+<meta property="og:title" content="Building a privacy platform instead of another privacy feature — Sashank Vemuri">
+<meta property="og:description" content="A new requirement doesn&#x27;t always need a new solution.">
+<meta property="og:url" content="https://sashankpm-web.github.io/writing/platform-not-feature.html">
+<meta property="og:image" content="https://sashankpm-web.github.io/assets/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://sashankpm-web.github.io/writing/platform-not-feature.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand"><a href="../index.html" style="color:inherit; text-decoration:none;">Sashank Vemuri <span>·</span> Product</a></div>
+    <nav class="main-nav">
+      <a href="../index.html#case-studies">Case Studies</a>
+      <a href="../index.html#careerlogic">CareerLogic</a>
+      <a href="../index.html#teardown">Teardown</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact" class="cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="cs-header">
+      <p class="eyebrow">Product Strategy · Platform Thinking</p>
+      <h1>Building a privacy platform instead of another privacy feature</h1>
+      <p class="lede">A new requirement doesn't always need a new solution.</p>
+    </div>
+
+    <section class="cs-section">
+      <p>One of the biggest lessons from my recent product work is that a new requirement doesn't always need a new solution.</p>
+
+      <p>Privacy Preferences is a good example.</p>
+
+      <p>The bank already had a Privacy Preferences experience, but it was based on a standalone legacy form accessed through the Privacy page. The experience was different from the modern digital patterns being used elsewhere, and the customer journey wasn't as clear as it could be.</p>
+
+      <p>At the same time, Email Marketing Preferences existed separately under Profile &amp; Settings and continued to evolve independently. We weren't trying to merge the two products.</p>
+
+      <p>The opportunity was to modernize the Privacy Preferences experience and move it onto the enterprise Micro Frontend architecture already established across Online Banking, Mobile Web, and Native Mobile.</p>
+
+      <p>That changed how I thought about the work.</p>
+
+      <p>The requirement wasn't simply:</p>
+      <p class="pull-quote">"Build an FCRA preference screen."</p>
+      <p>It became:</p>
+      <p class="pull-quote">"How do we make this capability fit into a platform that can support FCRA today and future privacy requirements without rebuilding the experience each time?"</p>
+
+      <p>That meant thinking beyond the UI.</p>
+
+      <p>We had to consider the MFE architecture, APIs, downstream integrations, data storage, authentication, business rules, QA, release dependencies, and the teams that would own those components after launch.</p>
+
+      <p>The same thinking applies to Email Marketing Preferences. Brands are continuously onboarded or deprecated, themes change, and opt-in and opt-out journeys evolve. Treating each brand request as a one-off implementation would create unnecessary duplication.</p>
+
+      <p>A platform approach gives us reusable patterns for these changes.</p>
+
+      <p>There are three questions I now ask when deciding whether something should be treated as a feature or a platform capability:</p>
+      <ul>
+        <li><b>Will we need this again?</b></li>
+        <li><b>What changes when the next regulatory or business requirement arrives?</b></li>
+        <li><b>Can we create a reusable capability instead of solving the same problem again?</b></li>
+      </ul>
+
+      <p>That doesn't mean every problem needs to become a platform.</p>
+
+      <p>Platform thinking has a cost too. Additional abstraction can slow delivery if there isn't a real reuse case.</p>
+
+      <p>The product decision is therefore not "platform versus feature."</p>
+
+      <p>It is deciding when investing in the platform will make the next five changes easier than making the current change as a one-off.</p>
+    </section>
+
+    <div class="cs-nav">
+      <a href="compliance-is-a-requirement.html">&larr; Previous: Compliance is a product requirement, not a gate</a>
+      <a href="prioritization.html">Next: Prioritization is deciding what not to build yet &rarr;</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>&copy; Sashank Vemuri — Hyderabad, India</div>
+    <div>
+      <a href="mailto:sashank.vemuri@gmail.com">sashank.vemuri@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/sashank-vemuri" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

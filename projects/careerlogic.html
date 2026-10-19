@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CareerLogic — Sashank Vemuri</title>
+<meta name="description" content="I ran my own job search like a product: every posting screened against explicit eligibility rules, a structured evaluation for the few that clear the bar, and a tailored CV and cover letter for…">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sashank Vemuri — Product">
+<meta property="og:title" content="CareerLogic — Sashank Vemuri">
+<meta property="og:description" content="I ran my own job search like a product: every posting screened against explicit eligibility rules, a structured evaluation for the few that clear the bar, and a tailored CV and cover letter for…">
+<meta property="og:url" content="https://sashankpm-web.github.io/projects/careerlogic.html">
+<meta property="og:image" content="https://sashankpm-web.github.io/assets/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://sashankpm-web.github.io/projects/careerlogic.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand"><a href="../index.html" style="color:inherit; text-decoration:none;">Sashank Vemuri <span>·</span> Product</a></div>
+    <nav class="main-nav">
+      <a href="../index.html#case-studies">Case Studies</a>
+      <a href="../index.html#careerlogic">CareerLogic</a>
+      <a href="../index.html#teardown">Teardown</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact" class="cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="cs-header">
+      <p class="eyebrow">Built by me · Open source</p>
+      <h1>CareerLogic — a rule-based job-search pipeline</h1>
+      <p class="lede">I ran my own job search like a product: every posting screened against explicit eligibility rules, a structured evaluation for the few that clear the bar, and a tailored CV and cover letter for each — with a human decision before anything is sent.</p>
+      <div class="cs-meta">
+        <div><b>Role</b>Product owner, designer and sole user</div>
+        <div><b>Type</b>Real-world workflow automation</div>
+        <div><b>Timeframe</b>2026 – Present</div>
+        <div><b>Code</b><a href="https://github.com/sashankpm-web/careerlogic" target="_blank" rel="noopener">github.com/sashankpm-web/careerlogic</a></div>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <p class="eyebrow">TL;DR</p>
+      <ul>
+        <li>A search across a dozen markets surfaces thousands of postings. The hard part isn't finding them — it's deciding which deserve a tailored application, then producing that application without quality drifting.</li>
+        <li>The key call: <b>explicit rules decide, not a model</b>. Every verdict can be traced to the rule that produced it, and no CV sentence is written that isn't already true.</li>
+        <li>Result: of <b>7,547</b> postings screened with their full job descriptions, <b>85%</b> were set aside before any application work — about <b>1 in 7</b> earned a full evaluation.</li>
+      </ul>
+    </div>
+
+    <section class="cs-section">
+      <h2><span class="step">1</span>Problem &amp; who it's for</h2>
+      <p>The user was me: a senior product owner searching across India, the U.S., Europe, the Gulf and
+      Asia-Pacific at the same time. Each market brings its own eligibility questions — work authorisation,
+      sponsorship, residency, local-language requirements — and most postings fail one of them in a way the
+      title never reveals.</p>
+      <p>Reading every posting carefully doesn't scale. Skimming does scale, but it fails in both directions:
+      good roles get missed and weak ones get applications. And once applications are being produced in
+      volume, quality drifts — a wrong claim in one cover letter, a formatting rule forgotten in the next.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">2</span>Evidence &amp; inputs</h2>
+      <ul>
+        <li><b>The postings themselves:</b> 7,547 with their full job descriptions, which is what the selectivity figures below are measured on.</li>
+        <li><b>My own profile as structured data:</b> career history, strengths, genuine gaps, work authorisation and target markets, kept in configuration so the rules can be checked against it.</li>
+        <li><b>Failures in real use.</b> The most useful input was every time the system got something wrong on a real posting — each one became a rule, a guardrail or a test (see the retrospective).</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">3</span>Workflow, evaluation &amp; guardrails</h2>
+      <p><b>Workflow:</b> scan → screen → evaluate → generate → render. Each stage's output is the next stage's
+      input, and each can run on its own.</p>
+      <p><b>Seven screening rules</b> decide every verdict: role family, excluded titles and companies, hard
+      skill gaps (a score penalty, not a skip), local-language requirements, home-country location limits,
+      work authorisation abroad (must already live there, citizenship or clearance required, or sponsorship
+      refused), and nationality-restricted titles. Where a title is ambiguous, the posting is
+      <b>flagged for a human read</b> rather than guessed at.</p>
+      <p><b>Guardrails:</b></p>
+      <ul>
+        <li><b>Never fabricate.</b> Every CV and cover-letter sentence comes from my own profile data; the generator selects and orders existing material and never writes a new claim.</li>
+        <li><b>Dedup gate</b>, so the same posting re-listed under a different spelling or ID isn't applied to twice.</li>
+        <li><b>Domain guard</b>, which warns when a draft claims experience my profile lists as a gap.</li>
+        <li><b>Length check</b> on every rendered CV.</li>
+        <li><b>A human in the loop:</b> I read the full job description before any CV is generated, and I submit every application myself. Nothing is sent automatically.</li>
+      </ul>
+      <p><b>How it's tested.</b> Before publishing, I had the public version checked against my private working
+      version: identical screening verdicts on 15,110 cases, byte-identical CVs and cover letters across 16
+      job shapes, and identical evaluation files on 308 of 308. An end-to-end test suite runs from a fresh copy
+      using only fictional sample data, and confirms none of my real data appears anywhere in the output.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">4</span>Options considered</h2>
+      <div class="options">
+        <div class="option">
+          <span class="verdict">Set aside</span>
+          <b>Apply broadly</b>
+          <p>Volume over selection. It wastes recruiters' time and mine, and generic applications to roles I don't fit do nothing for the ones I do.</p>
+        </div>
+        <div class="option">
+          <span class="verdict">Set aside</span>
+          <b>Let an AI model judge every posting</b>
+          <p>Flexible, but at thousands of postings it costs money per posting, the same posting can get a different verdict tomorrow, and "why was this skipped?" has no precise answer.</p>
+        </div>
+        <div class="option">
+          <span class="verdict">Set aside</span>
+          <b>Evaluate each posting interactively</b>
+          <p>The open-source career-ops framework I started from evaluates one posting at a time in depth. Excellent for a shortlist; too slow and costly as the first filter across thousands.</p>
+        </div>
+        <div class="option chosen">
+          <span class="verdict">Chosen</span>
+          <b>Rules screen everything; depth only where it's earned</b>
+          <p>Cheap, repeatable rules on every posting; a full evaluation only for the roughly 1 in 7 that clear the bar; a human read before any application.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">5</span>Decision, trade-offs &amp; non-goals</h2>
+      <p><b>Decision criteria.</b> Traceable (every verdict names its rule), repeatable (same input, same
+      result), honest (no invented claims) and cheap enough to run on every posting.</p>
+      <p><b>Trade-offs accepted.</b></p>
+      <ul>
+        <li>Rules miss nuance a careful reader would catch. Mitigation: ambiguous titles are flagged rather than decided, and I read the full description before generating anything.</li>
+        <li>Rules need maintenance: every new failure means a rule change and a test. That cost is the point — it's how the system gets better instead of silently drifting.</li>
+      </ul>
+      <p><b>Non-goals.</b></p>
+      <ul class="nongoals">
+        <li>Submitting applications automatically.</li>
+        <li>AI-written claims in CVs or cover letters.</li>
+        <li>Maximising the number of applications sent.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">6</span>What I built</h2>
+      <p>I designed the rules, the guardrails and the tests, and built it with AI-assisted coding (Claude
+      Code). It runs alongside <a href="https://github.com/santifer/career-ops" target="_blank" rel="noopener">career-ops</a>,
+      an open-source evaluation framework by Santiago Fernández de Valderrama, and is credited to it in the
+      repository.</p>
+      <ul>
+        <li><b>The public repository</b>, with a README covering the design principles, the seven screening rules and every pipeline stage: <a href="https://github.com/sashankpm-web/careerlogic" target="_blank" rel="noopener">github.com/sashankpm-web/careerlogic</a></li>
+        <li><b>Complete sample configuration</b> for a fictional candidate, so anyone can run it end to end</li>
+        <li><b>The test suite</b> described above</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">7</span>Outcome &amp; metrics</h2>
+      <p>Of 7,547 postings screened with their full job descriptions:</p>
+<figure class="diagram">
+<svg class="dg" viewBox="0 0 760 218" role="img" aria-label="Funnel: of 7,547 postings, 26% off-target, 7% failed eligibility rules, 52% below the bar, 15% cleared; then evaluation, human read, tailored CV, human submission">
+<defs><marker id="cla" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead" d="M0,0 L10,5 L0,10 z"/></marker></defs><defs><marker id="clh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead hl" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<text class="lbl" x="20" y="18">7,547 POSTINGS SCREENED WITH FULL JOB DESCRIPTIONS</text>
+<rect class="seg a" x="20" y="30" width="187" height="34" rx="3"/>
+<text x="22" y="84"><tspan font-weight="600">26%</tspan></text>
+<text class="muted" x="22" y="100">off-target</text>
+<rect class="seg b" x="207" y="30" width="50" height="34" rx="3"/>
+<text x="209" y="84"><tspan font-weight="600">7%</tspan></text>
+<text class="muted" x="209" y="100">rules</text>
+<rect class="seg c" x="258" y="30" width="374" height="34" rx="3"/>
+<text x="260" y="84"><tspan font-weight="600">52%</tspan></text>
+<text class="muted" x="260" y="100">below the bar</text>
+<rect class="seg ok" x="632" y="30" width="108" height="34" rx="3"/>
+<text x="634" y="84"><tspan font-weight="600">15%</tspan></text>
+<text class="muted" x="634" y="100">cleared</text>
+<path class="edge hl" d="M705,64 C705,120 100,110 100,140" marker-end="url(#clh)"/>
+<rect class="box hl" x="20" y="142" width="160" height="44" rx="8"/>
+<text x="100" y="164.0" text-anchor="middle" dominant-baseline="middle">Full evaluation</text>
+<path class="edge hl" d="M180,164 L203,164" marker-end="url(#clh)"/>
+<rect class="box warn" x="205" y="142" width="160" height="44" rx="8"/>
+<text x="285" y="164.0" text-anchor="middle" dominant-baseline="middle">I read the full JD</text>
+<path class="edge hl" d="M365,164 L388,164" marker-end="url(#clh)"/>
+<rect class="box hl" x="390" y="142" width="160" height="44" rx="8"/>
+<text x="470" y="164.0" text-anchor="middle" dominant-baseline="middle">Tailored CV + letter</text>
+<path class="edge hl" d="M550,164 L573,164" marker-end="url(#clh)"/>
+<rect class="box ok" x="575" y="142" width="160" height="44" rx="8"/>
+<text x="655" y="164.0" text-anchor="middle" dominant-baseline="middle">I decide &amp; submit</text>
+<text class="muted" x="20" y="208">about 1 in 7 postings earns an evaluation; nothing is ever sent automatically</text>
+</svg>
+<figcaption>Rules screen every posting; only the roughly 1 in 7 that clear the bar get a full evaluation, and a human read sits between the scoring and any application.</figcaption>
+</figure>
+      <ul>
+        <li><b>26%</b> set aside for an off-target title, an excluded company or the wrong location</li>
+        <li><b>7%</b> failed an eligibility or language rule</li>
+        <li><b>52%</b> scored below the bar</li>
+        <li><b>15%</b> cleared it — about 1 in 7 — and earned a full evaluation</li>
+      </ul>
+      <p><b>Measurement plan</b> <i>(not a result yet)</i>: the test of the scoring is whether higher-scored
+      roles convert to interviews at a higher rate than lower-scored ones. The plan: once there are enough
+      outcomes, compare interview rates across score bands, and re-weight the scoring if the bands don't
+      separate.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">8</span>Retrospective</h2>
+      <p>The real lessons came from what broke on real postings:</p>
+      <ul>
+        <li><b>A copy of the rules drifted.</b> A rescoring step kept its own copy of the screening rules; when new eligibility rules were added, the copy silently skipped them. Now there is one set of rules, imported everywhere.</li>
+        <li><b>Place names fooled the location checks.</b> "Indianapolis" matched my home country, and "Perth, WA, Australia" was read as Washington State, which put the wrong work-authorisation sentence into one cover letter. It was caught before sending; both checks now match whole place names, with tests for each case.</li>
+        <li><b>The rules over-trusted keywords.</b> Reading the full job descriptions for one day's top-ranked roles ruled out 8 of 47 that the scoring had placed at the top. That's why a human read now sits between scoring and any application.</li>
+        <li><b>An applicant-tracking system taught me something about CVs.</b> Splitting one employer into three adjacent entries made a target ATS's parser read zero experience entries instead of three imperfect ones. The CV format now keeps one block per employer, with a comment in the code so the "improvement" isn't reintroduced.</li>
+      </ul>
+      <p>The throughline is the same one from my trade-finance work: automation should absorb volume, not
+      judgment. The rules decide what isn't worth my time; I decide what is.</p>
+    </section>
+
+    <div class="cs-nav">
+      <a href="../case-studies/trade-finance-autorec.html">&larr; Previous: Trade Finance AutoRec</a>
+      <a href="../index.html#case-studies">Back to all work</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>&copy; Sashank Vemuri — Hyderabad, India</div>
+    <div>
+      <a href="mailto:sashank.vemuri@gmail.com">sashank.vemuri@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/sashank-vemuri" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

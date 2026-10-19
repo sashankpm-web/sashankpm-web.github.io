@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trade Finance Automation — AutoRec — Sashank Vemuri</title>
+<meta name="description" content="Turning days-long letter-of-credit and bank-guarantee document processing into minutes, with OCR-based rule validation against ICC/UCP standards.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sashank Vemuri — Product">
+<meta property="og:title" content="Trade Finance Automation — AutoRec — Sashank Vemuri">
+<meta property="og:description" content="Turning days-long letter-of-credit and bank-guarantee document processing into minutes, with OCR-based rule validation against ICC/UCP standards.">
+<meta property="og:url" content="https://sashankpm-web.github.io/case-studies/trade-finance-autorec.html">
+<meta property="og:image" content="https://sashankpm-web.github.io/assets/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://sashankpm-web.github.io/case-studies/trade-finance-autorec.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand"><a href="../index.html" style="color:inherit; text-decoration:none;">Sashank Vemuri <span>·</span> Product</a></div>
+    <nav class="main-nav">
+      <a href="../index.html#case-studies">Case Studies</a>
+      <a href="../index.html#careerlogic">CareerLogic</a>
+      <a href="../index.html#teardown">Teardown</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact" class="cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="cs-header">
+      <p class="eyebrow">Case Study 4 of 4</p>
+      <h1>Trade Finance Automation — AutoRec</h1>
+      <p class="lede">Turning days-long letter-of-credit and bank-guarantee document processing into minutes, with OCR-based rule validation against ICC/UCP standards.</p>
+      <div class="cs-meta">
+        <div><b>Role</b>Business Analyst</div>
+        <div><b>Client domain</b>Trade finance, UAE corporate banking</div>
+        <div><b>Timeframe</b>Apr 2018 – Dec 2018</div>
+        <div><b>Standards</b>ICC/UCP 600, ISBP 821, SWIFT MT700/MT707</div>
+      </div>
+      <div class="tool-row">
+        <span class="tool-badge"><span class="icon-chip"><img src="../assets/logos/oracle.svg" alt="Oracle"></span>Oracle FLEXCUBE</span>
+        <span class="tool-badge"><span class="icon-chip"><img src="../assets/logos/eastnets.svg" alt="Eastnets"></span>SafeWatch</span>
+        <span class="tool-badge"><span class="icon-chip dark"><img src="../assets/logos/newgen.svg" alt="Newgen"></span>OmniFlow</span>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <p class="eyebrow">TL;DR</p>
+      <ul>
+        <li>Checking trade documents against a letter of credit was manual, took days per transaction, and was only as consistent as whoever did the check that day.</li>
+        <li>The key call: let automation absorb the <b>volume</b>, never the <b>judgment</b>. OCR output was never trusted on its own; every extracted field was checked against the LC's own SWIFT terms.</li>
+        <li>Result: turnaround cut <b>from days to minutes</b>, with more consistent document checking.</li>
+      </ul>
+    </div>
+
+    <section class="cs-section">
+      <h2><span class="step">1</span>Problem &amp; who it's for</h2>
+      <p>A Letter of Credit or Bank Guarantee doesn't move on trust alone — every document in the chain (Bill of
+      Lading, Commercial Invoice, Packing List, Certificate of Origin, drafts, cover schedules) has to be checked
+      against the LC's exact terms and against international standards (ICC/UCP 600, ISBP 821) before funds
+      release. Done manually, that's a specialist reading dense trade documents line by line against a rulebook,
+      for every transaction, every time.</p>
+      <ul>
+        <li><b>For trade-operations checkers</b>, that meant days of turnaround on transactions where counterparties expected faster settlement.</li>
+        <li><b>For the bank</b>, it meant inconsistency risk: two checkers applying the same UCP/ISBP rules could reach different conclusions on an edge case, and sanctions screening ran as a separate manual step on top.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">2</span>Evidence &amp; inputs</h2>
+      <ul>
+        <li><b>Rules versus judgment.</b> The first scoping question was which parts of document checking were genuinely rules-based, and therefore automatable, and which needed human judgment on ambiguous or non-standard documentation.</li>
+        <li><b>The standards themselves:</b> ICC/UCP 600 and ISBP 821 for document checking, and SWIFT MT700 (LC issuance) and MT707 (LC amendment) for the terms each document had to match.</li>
+        <li><b>The integration map:</b> Oracle FLEXCUBE (customer, limit, account and signature data), SafeWatch (sanctions screening), OmniFlow (document management), VesselTracker (shipping verification) and SWIFT, all mapped before any automation logic could be trusted end to end.</li>
+        <li><b>Document volume and standardisation by type</b>, which set the automation order.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">3</span>Automation workflow, checks &amp; fallbacks</h2>
+      <p>This is the closest of my client projects to what's now called an AI workflow, and it was designed the
+      same way: input, processing, a definition of a good output, and a fallback.</p>
+      <ul>
+        <li><b>Input:</b> the documents presented under an LC or BG.</li>
+        <li><b>Processing:</b> classify each document, extract its data by OCR, and apply the ICC/UCP/ISBP business rules.</li>
+        <li><b>What counts as a good output:</b> an extracted field is accepted only when it matches the LC's actual terms in the SWIFT MT700/MT707 message. OCR output on its own was never treated as ground truth.</li>
+        <li><b>Guardrails:</b> sanctions screening through SafeWatch and limit and signature checks through FLEXCUBE, so a document could not clear on extraction alone.</li>
+        <li><b>Fallback:</b> low-volume or highly variable document formats stayed on the manual-review path, where a checker makes the call.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">4</span>Options considered</h2>
+      <div class="options">
+        <div class="option">
+          <span class="verdict">Set aside</span>
+          <b>Trust OCR output directly</b>
+          <p>The fastest version: clear a document once its fields are extracted. Given the compliance stakes of a wrong LC/BG decision, a misread field would have become a wrong payment.</p>
+        </div>
+        <div class="option">
+          <span class="verdict">Set aside</span>
+          <b>Automate every document type before launch</b>
+          <p>Theoretically complete, but it would have forced highly variable formats through OCR and delayed shipping anything at all.</p>
+        </div>
+        <div class="option chosen">
+          <span class="verdict">Chosen</span>
+          <b>Automate the standard documents, verify against SWIFT</b>
+          <p>High-volume, well-standardised types (Commercial Invoice, Bill of Lading) first, every extraction cross-checked against the SWIFT terms, the rest left to checkers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">5</span>Decision, trade-offs &amp; non-goals</h2>
+      <p><b>Decision criteria.</b> Document types were prioritised for automation by volume and
+      standardisation, not by theoretical completeness.</p>
+      <p><b>Trade-offs accepted.</b></p>
+      <ul>
+        <li>Some automation speed given up for accuracy: the SWIFT cross-check added a step to every document.</li>
+        <li>A narrower first release, with variable formats left manual, in exchange for shipping value sooner.</li>
+      </ul>
+      <p><b>Non-goals for v1.</b></p>
+      <ul class="nongoals">
+        <li>Automating low-volume or highly variable document formats; they stayed with human checkers.</li>
+        <li>Automating the decision on discrepancies. When a document didn't match, a checker decided what happened next.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">6</span>What I delivered</h2>
+      <p>My role was business analyst on the delivery team, and these were my deliverables:</p>
+      <ul>
+        <li><b>Functional requirements and workflows</b> for documentary trade operations, applying ICC/UCP 600 and ISBP</li>
+        <li><b>Automated-workflow specifications</b>, translating business rules with trade operations and technology teams</li>
+        <li><b>SWIFT field validation</b> of MT700/MT707 terms against OCR-extracted document data</li>
+        <li><b>SIT and UAT coordination</b> across FLEXCUBE, SafeWatch, OmniFlow and SWIFT, including pulling test data with SQL alongside the database team</li>
+      </ul>
+      <figure class="diagram">
+<svg class="dg" viewBox="0 -6 760 274" role="img" aria-label="Flow: documents classified, OCR-extracted and rule-checked; matched against SWIFT terms; cleared after sanctions and limit checks, otherwise routed to a human checker">
+<defs><marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead" d="M0,0 L10,5 L0,10 z"/></marker></defs><defs><marker id="arh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="arrowhead hl" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="box " x="10" y="36" width="110" height="50" rx="8"/>
+<text x="65" y="52.0" text-anchor="middle" dominant-baseline="middle">LC / BG</text>
+<text x="65" y="70.0" text-anchor="middle" dominant-baseline="middle">documents</text>
+<path class="edge " d="M120,61 L143,61" marker-end="url(#ara)"/>
+<rect class="box " x="145" y="36" width="95" height="50" rx="8"/>
+<text x="192" y="61.0" text-anchor="middle" dominant-baseline="middle">Classify</text>
+<path class="edge " d="M240,61 L263,61" marker-end="url(#ara)"/>
+<rect class="box " x="265" y="36" width="100" height="50" rx="8"/>
+<text x="315" y="61.0" text-anchor="middle" dominant-baseline="middle">OCR extract</text>
+<path class="edge " d="M365,61 L388,61" marker-end="url(#ara)"/>
+<rect class="box " x="390" y="36" width="120" height="50" rx="8"/>
+<text x="450" y="52.0" text-anchor="middle" dominant-baseline="middle">ICC / UCP / ISBP</text>
+<text x="450" y="70.0" text-anchor="middle" dominant-baseline="middle">rules</text>
+<path class="edge hl" d="M510,61 L543,61" marker-end="url(#arh)"/>
+<path class="box hl" d="M600,20 L655,61 L600,102 L545,61 Z"/>
+<text x="600" y="52" text-anchor="middle" class="on-accent">Matches</text>
+<text x="600" y="72" text-anchor="middle" class="on-accent">SWIFT terms?</text>
+<text class="muted" x="600" y="12" text-anchor="middle">MT700 / MT707</text>
+<path class="edge hl" d="M655,61 L700,61" marker-end="url(#arh)"/>
+<text class="muted" x="676" y="52" text-anchor="middle">yes</text>
+<rect class="box hl" x="622" y="128" width="134" height="70" rx="8"/>
+<text x="689" y="145.0" text-anchor="middle" dominant-baseline="middle">Sanctions +</text>
+<text x="689" y="163.0" text-anchor="middle" dominant-baseline="middle">limits, signature</text>
+<text class="muted" x="689" y="181.0" text-anchor="middle" dominant-baseline="middle">SafeWatch · FLEXCUBE</text>
+<path class="edge hl" d="M712,61 L712,128" marker-end="url(#arh)"/>
+<path class="edge hl" d="M697,198 L697,214" marker-end="url(#arh)"/>
+<rect class="box ok" x="645" y="216" width="105" height="40" rx="8"/>
+<text x="697" y="236.0" text-anchor="middle" dominant-baseline="middle">Cleared</text>
+<rect class="box warn" x="250" y="196" width="230" height="56" rx="8"/>
+<text x="365" y="215.0" text-anchor="middle" dominant-baseline="middle">Human checker</text>
+<text class="muted" x="365" y="233.0" text-anchor="middle" dominant-baseline="middle">mismatches &amp; variable formats</text>
+<path class="edge bad" d="M600,102 C600,160 540,224 482,224" marker-end="url(#ara)"/>
+<text class="muted" x="566" y="176" text-anchor="middle">no</text>
+<path class="edge bad" d="M192,86 C192,150 220,224 248,224" marker-end="url(#ara)"/>
+<text class="muted" x="170" y="170" text-anchor="middle">non-standard</text>
+</svg>
+<figcaption>OCR output was never trusted on its own: a document cleared only when its extracted fields matched the LC's SWIFT terms and passed sanctions and limit checks. Mismatches and non-standard formats went to a human checker.</figcaption>
+</figure>
+      <p class="fine">A diagram of the approach, not a product screen. The real artefacts are the client's and stay confidential.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">7</span>Outcome &amp; metrics</h2>
+      <ul>
+        <li>Automated trade finance document processing — turnaround time cut <b>from days to minutes</b></li>
+        <li>Improved accuracy in LC/BG document checking through OCR-based rule validation</li>
+      </ul>
+      <p class="fine">No percentage was recorded for this project, so none is given.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2><span class="step">8</span>Retrospective</h2>
+      <p>The rule that held up best: automation should absorb volume, not judgment. Keeping OCR-extracted data
+      subordinate to an actual SWIFT-field cross-check, rather than letting automation make the final call, is
+      what made the speed gain trustworthy instead of just fast.</p>
+      <p>The domain knowledge from this project — LC lifecycle mechanics, SWIFT message structures,
+      sanctions-screening workflow — still shapes how I think about any regulated-platform automation: the
+      question is never just "can this be automated", it's "what's the smallest part of this that actually needs
+      a human, and how do we make sure that part still happens."</p>
+      <p><b>What I'd do differently:</b> record a baseline error rate before go-live. "Improved accuracy" is true, but without a before-and-after number it can't be quantified.</p>
+    </section>
+
+    <div class="cs-nav">
+      <a href="libor-transition.html">&larr; Previous: LIBOR&rarr;SOFR Transition</a>
+      <a href="../projects/careerlogic.html">Next: CareerLogic &rarr;</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>&copy; Sashank Vemuri — Hyderabad, India</div>
+    <div>
+      <a href="mailto:sashank.vemuri@gmail.com">sashank.vemuri@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/sashank-vemuri" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

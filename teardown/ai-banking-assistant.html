@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erica vs. EVA — AI assistants in regulated banking — Sashank Vemuri</title>
+<meta name="description" content="Bank of America&#x27;s Erica is the most widely adopted AI assistant in banking. HDFC Bank&#x27;s EVA was one of India&#x27;s first. Using EVA today shows how differently two banks have put &quot;AI&quot; in front of…">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sashank Vemuri — Product">
+<meta property="og:title" content="Erica vs. EVA — AI assistants in regulated banking — Sashank Vemuri">
+<meta property="og:description" content="Bank of America&#x27;s Erica is the most widely adopted AI assistant in banking. HDFC Bank&#x27;s EVA was one of India&#x27;s first. Using EVA today shows how differently two banks have put &quot;AI&quot; in front of…">
+<meta property="og:url" content="https://sashankpm-web.github.io/teardown/ai-banking-assistant.html">
+<meta property="og:image" content="https://sashankpm-web.github.io/assets/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://sashankpm-web.github.io/teardown/ai-banking-assistant.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand"><a href="../index.html" style="color:inherit; text-decoration:none;">Sashank Vemuri <span>·</span> Product</a></div>
+    <nav class="main-nav">
+      <a href="../index.html#case-studies">Case Studies</a>
+      <a href="../index.html#careerlogic">CareerLogic</a>
+      <a href="../index.html#teardown">Teardown</a>
+      <a href="../index.html#writing">Writing</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact" class="cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="cs-header">
+      <p class="eyebrow">Teardown · AI in regulated banking</p>
+      <h1>Erica vs. EVA — two very different answers to AI in a regulated bank</h1>
+      <p class="lede">Bank of America's Erica is the most widely adopted AI assistant in banking. HDFC Bank's EVA was one of India's first. Using EVA today shows how differently two banks have put "AI" in front of customers — measured against what their regulators now expect.</p>
+      <div class="cs-meta">
+        <div><b>Products</b>Erica (Bank of America, U.S.) · EVA (HDFC Bank, India)</div>
+        <div><b>Regulatory lens</b>CFPB (U.S.) · RBI FREE-AI framework (India)</div>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <p class="eyebrow">How this teardown was done</p>
+      <ul>
+        <li><b>Erica — public evidence only.</b> I don't hold a Bank of America account, so everything about Erica comes from the bank's own published figures and product descriptions, and from the U.S. regulator's review of bank chatbots. Where I infer something, I say so.</li>
+        <li><b>EVA — hands-on,</b> on HDFC Bank's public website in October 2026. No login was involved, so the screenshots contain no personal data.</li>
+        <li>Sources are listed at the end of the page.</li>
+      </ul>
+    </div>
+
+    <section class="cs-section">
+      <h2>Why these two</h2>
+      <p><b>Erica</b> launched in 2018. Bank of America reports that it has passed 3 billion client interactions,
+      has assisted nearly 50 million users, averages more than 58 million interactions a month, and has
+      delivered more than 1.7 billion proactive, personalised insights. The bank also reports that more than
+      98% of users find the information they need.</p>
+      <p><b>EVA</b> ("Electronic Virtual Assistant") launched in March 2017, built with Senseforth. At launch it
+      was configured to answer questions across more than 7,500 FAQs, and it handled 2.7 million customer
+      queries in its first six months.</p>
+      <p>What makes the pair interesting isn't the technology. It's that both answer to regulators who have
+      now said, in writing, what they expect from AI in customer service — and those expectations are where
+      the real design decisions sit.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2>What the regulators expect</h2>
+      <ul>
+        <li><b>United States — CFPB, <i>Chatbots in Consumer Finance</i> (June 2023).</b> All ten of the largest U.S. commercial banks use chatbots, and roughly 37% of the U.S. population was estimated to have interacted with one in 2022. The risks it names: incorrect answers, noncompliance with consumer-protection law, privacy and security gaps, and "doom loops" where a customer can't get past the bot to a person.</li>
+        <li><b>India — RBI, FREE-AI framework (August 2025).</b> Seven principles and 26 recommendations for responsible AI in financial services. For customer-facing AI: disclose the use, limitations and risks of AI; make sure customers know when they are dealing with an AI system; and let them contest an AI-driven decision.</li>
+      </ul>
+      <p>Put together, that gives three questions any bank's assistant has to answer well.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2>The three design questions</h2>
+      <div class="options">
+        <div class="option">
+          <span class="verdict">Question 1</span>
+          <b>Information or advice?</b>
+          <p>"Here's your spending this month" is information. "You should move money into savings" starts to look like advice, where suitability rules apply. Can the customer tell which one they're getting?</p>
+        </div>
+        <div class="option">
+          <span class="verdict">Question 2</span>
+          <b>Does a nudge know its place?</b>
+          <p>Banks already send fraud alerts, low-balance alerts and bill reminders, each with its own urgency. Does an AI insight fit that hierarchy, or arrive as a parallel stream with its own tone?</p>
+        </div>
+        <div class="option">
+          <span class="verdict">Question 3</span>
+          <b>How fast is the way out?</b>
+          <p>When the assistant can't help — a dispute, a complaint, a complex product question — how many steps to a person, and does the conversation so far go with you?</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>Erica, through the three questions</h2>
+      <p class="fine">Based on Bank of America's published descriptions; these are informed readings, not hands-on findings.</p>
+      <p><b>1. Information or advice.</b> Bank of America describes Erica as "providing guidance on nearly 50
+      investment-related topics". The careful choice of "guidance" rather than "advice" is itself the point:
+      Erica operates right on the line Question 1 is about. From the outside, the product question is whether
+      the interface marks the difference between describing a customer's money and recommending what to do
+      with it, or leaves it to wording like that.</p>
+      <p><b>2. Nudges.</b> With more than 1.7 billion proactive insights delivered, Erica's proactive layer is a
+      channel in its own right, alongside the bank's existing alert rails. The question is whether an
+      observation about spending and a possible duplicate charge feel like different categories of message —
+      they should.</p>
+      <p><b>3. The way out.</b> Erica can schedule an appointment with a banker, which is a real escape hatch.
+      The CFPB's "doom loop" finding is the reason to measure the other path too: how quickly a customer who
+      needs a person <i>now</i> gets one, with context carried over.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2>EVA, hands-on</h2>
+      <p><b>First finding: where EVA lives.</b> Looking for EVA in my HDFC Bank mobile app, I couldn't find it.
+      The bank's own page places EVA on its <b>website</b>, outside the logged-in app. That is a real design
+      difference from Erica, which sits inside Bank of America's app, where customers actually manage their
+      money: EVA answers questions about products, while Erica works alongside the customer's own accounts.</p>
+      <p><b>Second finding: EVA is now a search box, not a conversation.</b> On the website, EVA sits in the
+      header as "Ask EVA — Search…". Every question I asked returned a list of <i>Related Search Results</i> —
+      links to product and help pages — rather than an answer. EVA launched in 2017 as a chatbot that answered
+      in plain language; on the website today it behaves as an AI-branded site search.</p>
+      <p>I ran four checks.</p>
+
+      <h3>1. A factual question: "credit card's annual fee"</h3>
+      <figure style="margin:16px 0;">
+        <img src="../assets/teardown/eva-1-card-fee.webp" alt="EVA results for 'credit card's annual fee': a credit card sign-up banner first, then fee pages for individual cards" loading="lazy" style="border:1px solid var(--rule); border-radius:8px;">
+      </figure>
+      <p>The first result is a promotion — "Join the 15M+ HDFC Bank Credit Card Club… Get your card now" —
+      followed by fee pages for individual cards. No direct answer; the customer has to work out which card
+      page applies to them.</p>
+
+      <h3>2. An advice-shaped question: "Should I break my FD to prepay my loan?"</h3>
+      <figure style="margin:16px 0;">
+        <img src="../assets/teardown/eva-2-advice.webp" alt="EVA results for 'Should I break my FD to prepay my loan?': links to open an FD, withdraw an FD early, and take a loan against deposits" loading="lazy" style="border:1px solid var(--rule); border-radius:8px;">
+      </figure>
+      <p>Links to open a fixed deposit, to withdraw one early, and to take a loan against deposits. EVA neither
+      advises nor says that it can't advise. That keeps the bank clear of Question 1's advice line — but the
+      customer gets no help deciding, and no pointer to someone who could help. The loan-against-deposit link
+      is a genuinely relevant alternative, offered as a product rather than as an explanation.</p>
+
+      <h3>3. A request to leave: "Can you close my credit card?"</h3>
+      <figure style="margin:16px 0;">
+        <img src="../assets/teardown/eva-3-close-card.webp" alt="EVA results for 'Can you close my credit card?': a 'Get your card now' banner and 'Apply for credit card' first, then 'Block lost/stolen card'" loading="lazy" style="border:1px solid var(--rule); border-radius:8px;">
+      </figure>
+      <p>The top answers to a closure request are a sign-up banner and "Apply for Credit Card", then
+      "Block lost/stolen card". The search matched the words "credit card", not the intent. The CFPB names
+      incorrect answers as a core chatbot risk; answering "I want to leave" with "sign up" is the kind that
+      costs trust.</p>
+
+      <h3>4. A way out: "I want customer support"</h3>
+      <figure style="margin:16px 0;">
+        <img src="../assets/teardown/eva-4-support.webp" alt="EVA results for 'I want customer support': profile update, a customer care page, and a 'Current Account Support' result describing a business credit card" loading="lazy" style="border:1px solid var(--rule); border-radius:8px;">
+      </figure>
+      <p>A profile-update page, a link to the Customer Care page, and a result titled "Current Account Support"
+      whose description is about a business credit card. There is no direct handoff to a person or a live
+      chat; the way out is a link to another page.</p>
+
+      <p><b>Disclosure.</b> Nothing in the panel says what EVA is or what it can't do — just the "Ask EVA"
+      label and an "Is this helpful?" rating. If EVA is search, the "EVA" persona promises more than it
+      delivers; if it is an assistant, the RBI's expectation that customers know they are dealing with AI, and
+      its limits, applies.</p>
+
+      <div style="overflow-x:auto; margin:24px 0;">
+      <table style="width:100%; border-collapse:collapse; font-size:14.5px; min-width:520px;">
+        <thead><tr style="text-align:left; border-bottom:2px solid var(--rule);">
+          <th style="padding:8px 10px 8px 0;"></th><th style="padding:8px 10px;">Erica <span class="fine">(public evidence)</span></th><th style="padding:8px 10px;">EVA <span class="fine">(hands-on)</span></th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--rule);"><td style="padding:8px 10px 8px 0;"><b>Where it lives</b></td><td style="padding:8px 10px;">Inside the logged-in app, next to the customer's accounts</td><td style="padding:8px 10px;">The public website's search bar; not found in the app</td></tr>
+          <tr style="border-bottom:1px solid var(--rule);"><td style="padding:8px 10px 8px 0;"><b>What it does</b></td><td style="padding:8px 10px;">Conversational answers, proactive insights, banker appointments</td><td style="padding:8px 10px;">Returns lists of related pages</td></tr>
+          <tr style="border-bottom:1px solid var(--rule);"><td style="padding:8px 10px 8px 0;"><b>Q1 · Advice</b></td><td style="padding:8px 10px;">"Guidance" on ~50 investment topics — right on the line</td><td style="padding:8px 10px;">Avoids the line by not answering at all</td></tr>
+          <tr style="border-bottom:1px solid var(--rule);"><td style="padding:8px 10px 8px 0;"><b>Q2 · Nudges</b></td><td style="padding:8px 10px;">1.7B+ proactive insights — a channel of its own</td><td style="padding:8px 10px;">None — no access to accounts on the website</td></tr>
+          <tr><td style="padding:8px 10px 8px 0;"><b>Q3 · Way out</b></td><td style="padding:8px 10px;">Schedules a banker appointment</td><td style="padding:8px 10px;">A link to the Customer Care page</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <h2>What I'd change</h2>
+      <p><b>For Question 1:</b> a persistent, subtle marker distinguishing "here's what I found" from "here's
+      what I'd suggest" — the same discipline a compliance-reviewed human adviser's script already follows,
+      made visible in the interface rather than left to phrasing.</p>
+      <p><b>For Question 2:</b> one notification taxonomy, so AI-generated insights inherit the same urgency and
+      channel rules as existing alert types instead of running as a parallel system. That is an architecture
+      decision as much as a UX one.</p>
+      <p><b>For Question 3:</b> a standing "talk to a person" option in every conversation, not buried in a
+      menu, with the conversation so far handed over automatically so the customer never repeats themselves.
+      It answers the CFPB's doom-loop concern and the RBI's right-to-contest expectation with the same feature.</p>
+      <p><b>For EVA specifically — three low-cost fixes, all from what I saw:</b></p>
+      <ul>
+        <li><b>Detect intent before matching keywords.</b> "Close my card", "block my card" and "get a card" share words but not intent. A small intent layer in front of the search would route a closure request to the closure process, not to a sign-up banner.</li>
+        <li><b>No promotions on service intents.</b> When the intent is a fee, a closure or a complaint, suppress the marketing banner. Cross-selling to someone trying to leave costs more trust than it earns.</li>
+        <li><b>Say what EVA is, and offer a person.</b> One line under the search box — what EVA can and can't do — plus a standing "talk to us" link that opens chat or a call-back, not another page.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section">
+      <h2>How I'd validate it</h2>
+      <p>A moderated usability study with 8–10 users across a spread of financial literacy levels, showing both
+      response types (informational and advice-adjacent) with and without the proposed marker, then asking
+      users to categorise what they just received. Correct-categorisation rate is the primary signal, before
+      touching any production metric. Compliance and legal would co-review the marker language before any live
+      test, given the regulatory sensitivity.</p>
+      <p><b>Hypothesised success metric</b> <i>(a hypothesis — I have no access to either bank's data)</i>: fewer
+      users abandoning the assistant after one ambiguous answer, and a downward trend in complaints tagged to
+      unclear or misleading AI responses.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2>Sources</h2>
+      <ul class="fine" style="font-size:13.5px;">
+        <li>Bank of America newsroom, <a href="https://newsroom.bankofamerica.com/content/newsroom/press-releases/2025/08/a-decade-of-ai-innovation--bofa-s-virtual-assistant-erica-surpas.html" target="_blank" rel="noopener">"A Decade of AI Innovation: BofA's Virtual Assistant Erica Surpasses 3 Billion Client Interactions"</a>, August 2025</li>
+        <li>Consumer Financial Protection Bureau, <a href="https://files.consumerfinance.gov/f/documents/cfpb_chatbot-issue-spotlight_2023-06.pdf" target="_blank" rel="noopener"><i>Chatbots in Consumer Finance</i></a>, issue spotlight, June 2023</li>
+        <li>Reserve Bank of India, <a href="https://rbi.org.in/SCRIPTS/PublicationReportDetails.aspx?ID=1306" target="_blank" rel="noopener">Framework for Responsible and Ethical Enablement of AI (FREE-AI)</a>, August 2025</li>
+        <li>HDFC Bank, <a href="https://www.hdfc.bank.in/ways-to-bank/digital-banking/eva-chatbot" target="_blank" rel="noopener">EVA chatbot</a> (where EVA is offered)</li>
+        <li>FinTech Futures, <a href="https://www.fintechfutures.com/ai-in-fintech/hdfc-bank-launches-ai-powered-virtual-assistant-eva" target="_blank" rel="noopener">"HDFC Bank launches AI-powered virtual assistant Eva"</a>, March 2017</li>
+        <li>Analytics India Magazine, <a href="https://www.analyticsindiamag.com/hdfc-banks-eva-becomes-indias-largest-smartest-chatbot/" target="_blank" rel="noopener">"HDFC Bank's EVA becomes India's largest, smartest chatbot"</a>, 2017</li>
+      </ul>
+    </section>
+
+    <div class="cs-nav">
+      <a href="../index.html#teardown">&larr; Back to portfolio</a>
+      <a href="../projects/careerlogic.html">Next: CareerLogic &rarr;</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>&copy; Sashank Vemuri — Hyderabad, India</div>
+    <div>
+      <a href="mailto:sashank.vemuri@gmail.com">sashank.vemuri@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/sashank-vemuri" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
